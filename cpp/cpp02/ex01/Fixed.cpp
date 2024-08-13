@@ -62,12 +62,12 @@ Fixed& Fixed::operator=(const Fixed& other)
 
 int Fixed::getRawBits(void) const
 {
-	return (fixed_point);
+	return (this->fixed_point);
 }
 
 void Fixed::setRawBits(int const raw)
 {
-	fixed_point = raw;
+	this->fixed_point = raw;
 }
 
 std::ostream& operator<<(std::ostream& os, const Fixed& fixed)

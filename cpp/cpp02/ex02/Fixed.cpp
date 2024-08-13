@@ -25,7 +25,8 @@ Fixed::Fixed(const int i) : fixed_point(i << fractionalBits)
 Fixed::Fixed(const float f)
 {
 	std::cout << "Float constructor called" << std::endl;
-	fixed_point = roundf(f * (1 << fractionalBits));
+	float scaled = f * (1 << fractionalBits);
+	this->setRawBits(roundf(scaled));
 }
 
 Fixed::Fixed(const Fixed& other)
@@ -51,44 +52,125 @@ Fixed& Fixed::operator=(const Fixed& other)
 
 Fixed& Fixed::operator*(const Fixed& other)
 {
-	fixed_point = (this->fixed_point * other.fixed_point) >> fractionalBits;
+	fixed_point = this->getRawBits() * other.getRawBits();
+	// fixed_point = (this->toFloat() * other.toFloat());
 	return (*this);
 }
 
 Fixed& Fixed::operator/(const Fixed& other)
 {
-	fixed_point = (this->fixed_point / other.fixed_point) >> fractionalBits;
+	fixed_point = (this->toFloat() / other.toFloat());
 	return (*this);
 }
 
 Fixed& Fixed::operator+(const Fixed& other)
 {
-	fixed_point = (this->fixed_point + other.fixed_point) >> fractionalBits;
+	fixed_point = (this->toFloat() + other.toFloat());
 	return (*this);
 }
 
 Fixed& Fixed::operator-(const Fixed& other)
 {
-	fixed_point = (this->fixed_point - other.fixed_point) >> fractionalBits;
+	fixed_point = (this->toFloat() - other.toFloat());
 	return (*this);
 }
 
 Fixed& Fixed::operator++(void)
 {
-	fixed_point = (fixed_point + (1 << fractionalBits)) >> fractionalBits;
-	return (*this);
-}
-
-Fixed& Fixed::operator++(int)
-{
-	fixed_point = (fixed_point + (1 << fractionalBits)) >> fractionalBits;
+	this->fixed_point += 1;
 	return (*this);
 }
 
 Fixed& Fixed::operator--(void)
 {
-	fixed_point -= 1 >> fractionalBits;
+	this->fixed_point -= 1;
 	return (*this);
+}
+
+Fixed Fixed::operator++(int)
+{
+	Fixed	temp = *this;
+
+	(this->fixed_point) +=1;
+	return (temp);
+}
+
+Fixed Fixed::operator--(int)
+{
+	Fixed	temp = *this;
+
+	(this->fixed_point) -=1;
+	return (temp);
+}
+
+int Fixed::operator<(const Fixed& other) const
+{
+	if (this->getRawBits() < other.getRawBits())
+		return (1);
+	return (0);
+}
+
+int Fixed::operator>(const Fixed& other) const
+{
+	if (this->getRawBits() > other.getRawBits())
+		return (1);
+	return (0);
+}
+
+int Fixed::operator<=(const Fixed& other) const
+{
+	if (this->getRawBits() <= other.getRawBits())
+		return (1);
+	return (0);
+}
+
+int Fixed::operator>=(const Fixed& other) const
+{
+	if (this->getRawBits() <= other.getRawBits())
+		return (1);
+	return (0);
+}
+
+int Fixed::operator==(const Fixed& other) const
+{
+	if (this->getRawBits() == other.getRawBits())
+		return (1);
+	return (0);
+}
+
+int Fixed::operator!=(const Fixed& other) const
+{
+	if (this->getRawBits() != other.getRawBits())
+		return (1);
+	return (0);
+}
+
+const Fixed& Fixed::min(const Fixed& obj1, const Fixed& obj2)
+{
+	if (obj1 < obj2)
+		return (obj1);
+	return (obj2);
+}
+	
+const Fixed& Fixed::max(const Fixed& obj1, const Fixed& obj2)
+{
+	if (obj1 > obj2)
+		return (obj1);
+	return (obj2);
+}
+
+Fixed& Fixed::min(Fixed& obj1, Fixed& obj2)
+{
+	if (obj1 < obj2)
+		return (obj1);
+	return (obj2);
+}
+	
+Fixed& Fixed::max(Fixed& obj1, Fixed& obj2)
+{
+	if (obj1 > obj2)
+		return (obj1);
+	return (obj2);
 }
 
 float Fixed::toFloat(void) const

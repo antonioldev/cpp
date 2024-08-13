@@ -33,9 +33,22 @@ public:
 	Fixed& operator+(const Fixed& other);
 	Fixed& operator-(const Fixed& other);
 
-	Fixed& operator++(void);
-	Fixed& operator++(int);
-	Fixed& operator--(void);
+	Fixed& operator++(void); // Prefix (++F)
+	Fixed& operator--(void); // Prefix (--F)
+	Fixed operator++(int); // Postfix (F++)
+	Fixed operator--(int); // Postfix (F--)
+
+	int operator<(const Fixed& other) const;
+	int operator>(const Fixed& other) const;
+	int operator<=(const Fixed& other) const;
+	int operator>=(const Fixed& other) const;
+	int operator==(const Fixed& other) const;
+	int operator!=(const Fixed& other) const;
+
+	static const Fixed& min(const Fixed& obj1, const Fixed& obj2);
+	static const Fixed& max(const Fixed& obj1, const Fixed& obj2);
+	static Fixed& min(Fixed& obj1, Fixed& obj2);
+	static Fixed& max(Fixed& obj1, Fixed& obj2);
 	
 	float toFloat(void) const;
 	int toInt(void) const;
