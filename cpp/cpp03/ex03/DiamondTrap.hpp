@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: alimotta <alimotta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/16 09:43:09 by alimotta          #+#    #+#             */
-/*   Updated: 2024/08/16 16:17:51 by alimotta         ###   ########.fr       */
+/*   Created: 2024/08/21 11:28:05 by alimotta          #+#    #+#             */
+/*   Updated: 2024/08/21 14:12:47 by alimotta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,21 @@
 #define DIAMOND_TRAP_DOT_HPP
 
 #include <iostream>
-#include "FragTrap.hpp"
 #include "ScavTrap.hpp"
+#include "FragTrap.hpp"
 
-class DiamondTrap : public FragTrap, public ScavTrap
+class DiamondTrap : public ScavTrap, public FragTrap
 {
 private:
-	std::string	name;
+	std::string name;
 public:
 	DiamondTrap(void);
-	~DiamondTrap();
 	DiamondTrap(std::string new_name);
-	// DiamondTrap(const DiamondTrap& other);
-	// DiamondTrap& operator=(const DiamondTrap& other);
+	~DiamondTrap();
+	DiamondTrap(const DiamondTrap& other);
+	DiamondTrap& operator=(const DiamondTrap& other);
 	void attack(const std::string& target);
+	void whoAmI();
 };
 
 #endif

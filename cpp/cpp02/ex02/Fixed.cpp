@@ -32,7 +32,8 @@ Fixed::Fixed(const float f)
 Fixed::Fixed(const Fixed& other)
 {
 	std::cout << "Copy constructor called" << std::endl;
-	setRawBits(other.fixed_point);
+	setRawBits(other.getRawBits());
+	// *this = other;
 }
 
 std::ostream& operator<<(std::ostream& os, const Fixed& fixed)
@@ -50,29 +51,24 @@ Fixed& Fixed::operator=(const Fixed& other)
 	return (*this);
 }
 
-Fixed& Fixed::operator*(const Fixed& other)
+Fixed Fixed::operator*(const Fixed& other)
 {
-	fixed_point = this->getRawBits() * other.getRawBits();
-	// fixed_point = (this->toFloat() * other.toFloat());
-	return (*this);
+	return (this->toFloat() * other.toFloat());
 }
 
-Fixed& Fixed::operator/(const Fixed& other)
+Fixed Fixed::operator/(const Fixed& other)
 {
-	fixed_point = (this->toFloat() / other.toFloat());
-	return (*this);
+	return (this->toFloat() / other.toFloat());
 }
 
-Fixed& Fixed::operator+(const Fixed& other)
+Fixed Fixed::operator+(const Fixed& other)
 {
-	fixed_point = (this->toFloat() + other.toFloat());
-	return (*this);
+	return (this->toFloat() + other.toFloat());
 }
 
-Fixed& Fixed::operator-(const Fixed& other)
+Fixed Fixed::operator-(const Fixed& other)
 {
-	fixed_point = (this->toFloat() - other.toFloat());
-	return (*this);
+	return (this->toFloat() - other.toFloat());
 }
 
 Fixed& Fixed::operator++(void)
@@ -126,7 +122,7 @@ int Fixed::operator<=(const Fixed& other) const
 
 int Fixed::operator>=(const Fixed& other) const
 {
-	if (this->getRawBits() <= other.getRawBits())
+	if (this->getRawBits() >= other.getRawBits())
 		return (1);
 	return (0);
 }

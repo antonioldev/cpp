@@ -27,6 +27,8 @@ std::string get_string(void)
 	do
 	{
 		std::getline(std::cin, str);
+		
+		// str.erase(std::remove_if(str.begin(), str.end(), ::isspace), str.end());
     } while (str.empty());
 	return (str);
 }

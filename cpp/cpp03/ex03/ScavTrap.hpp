@@ -5,21 +5,19 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: alimotta <alimotta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/15 16:29:18 by alimotta          #+#    #+#             */
-/*   Updated: 2024/08/16 11:41:15 by alimotta         ###   ########.fr       */
+/*   Created: 2024/08/21 11:28:05 by alimotta          #+#    #+#             */
+/*   Updated: 2024/08/21 12:37:39 by alimotta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SCAV_TRAP_DOT_HPP
 #define SCAV_TRAP_DOT_HPP
 
-#include "ClapTrap.hpp"
 #include <iostream>
+#include "ClapTrap.hpp"
 
 class ScavTrap : virtual public ClapTrap
 {
-private:
-	/* data */
 public:
 	ScavTrap(void);
 	ScavTrap(std::string new_name);

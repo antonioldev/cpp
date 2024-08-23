@@ -28,10 +28,10 @@ public:
 
 	Fixed(const Fixed& other);
 	Fixed& operator=(const Fixed& other);
-	Fixed& operator*(const Fixed& other);
-	Fixed& operator/(const Fixed& other);
-	Fixed& operator+(const Fixed& other);
-	Fixed& operator-(const Fixed& other);
+	Fixed operator*(const Fixed& other);
+	Fixed operator/(const Fixed& other);
+	Fixed operator+(const Fixed& other);
+	Fixed operator-(const Fixed& other);
 
 	Fixed& operator++(void); // Prefix (++F)
 	Fixed& operator--(void); // Prefix (--F)

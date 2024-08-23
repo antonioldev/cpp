@@ -1,6 +1,6 @@
 NAME	=	a.out
 CC		=	c++
-FLAG	=	-Wall -Wextra -Werror -std=c++98
+FLAG	=	-Wall -Wextra -Werror -std=c++98 -Wshadow -Wno-shadow
 SRC		=	main.cpp ClapTrap.cpp ScavTrap.cpp FragTrap.cpp DiamondTrap.cpp
 OBJ		=	$(SRC:.cpp=.o)
 
@@ -9,7 +9,7 @@ all		:	$(NAME)
 $(NAME)	:	$(OBJ)
 			$(CC) $(FLAG) $(OBJ) -o $(NAME)
 
-.o		:	.cpp
+%.o		:	%.cpp
 			$(CC) $(FLAG) -c $< -o $@
 
 clean	:

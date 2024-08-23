@@ -20,7 +20,7 @@ int	main(void)
 	std::string &stringREF = string;
 
 	std :: cout << "Address of string :"  << &string << std :: endl;
-	std :: cout << "Address of stringPTR :"  << stringPTR << std :: endl;
+	std :: cout << "Address held by stringPTR :"  << stringPTR << std :: endl;
 	std :: cout << "Address of stringREF :"  << &stringREF << std :: endl;
 
 	std :: cout << "Value of string :"  << string << std :: endl;
