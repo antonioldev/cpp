@@ -1,31 +1,15 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   AMateria.cpp                                       :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: alimotta <alimotta@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/22 16:36:23 by alimotta          #+#    #+#             */
-/*   Updated: 2024/08/23 08:07:17 by alimotta         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
 
 #include "AMateria.hpp"
 
-AMateria::AMateria()
+AMateria::AMateria() : type("Unknow")
 {
-	std::cout << "AMateria created" << std::endl;
-}
-
-AMateria::AMateria(std::string const & type) : type(type)
-{
-	std::cout << type << " material created" << std::endl;
+	// std::cout << type << " type have been created" << std::endl;
 }
 
 AMateria::AMateria(const AMateria& other)
 {
-	std::cout << other.getType() << " has been created" << std::endl;
-	this->type = other.getType();
+	this->type = other.type;
+	std::cout << "Copy constructor called for " << other.getType() << std::endl;	
 }
 
 AMateria& AMateria::operator=(const AMateria& other)
@@ -40,20 +24,20 @@ AMateria& AMateria::operator=(const AMateria& other)
 
 AMateria::~AMateria()
 {
-	std::cout << "AMateria Destroyed" << std::endl;
+	// std::cout << type << " type have been destroyed" << std::endl;
 }
 
-std::string const& AMateria::getType() const//Returns the materia type
+AMateria::AMateria(std::string const & type) : type(type)
+{
+	std::cout << type << " type have been created" << std::endl;
+}
+
+std::string const& AMateria::getType() const
 {
 	return (this->type);
 }
 
-AMateria* AMateria::clone()
+void AMateria::use(ICharacter& target)
 {
-	//TODO
-}
-
-virtual void AMateria::use(ICharacter& target)
-{
-	std::cout << target << " hit!" <<std::endl;
+	std::cout << "AMateria abstractly used on " << target.getName() << std::endl;
 }
