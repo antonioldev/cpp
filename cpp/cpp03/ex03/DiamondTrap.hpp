@@ -6,7 +6,7 @@
 /*   By: alimotta <alimotta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 11:28:05 by alimotta          #+#    #+#             */
-/*   Updated: 2024/08/21 14:12:47 by alimotta         ###   ########.fr       */
+/*   Updated: 2024/08/30 15:23:06 by alimotta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,9 @@ public:
 	~DiamondTrap();
 	DiamondTrap(const DiamondTrap& other);
 	DiamondTrap& operator=(const DiamondTrap& other);
-	void attack(const std::string& target);
+	// void attack(const std::string& target);
 	void whoAmI();
+	using ScavTrap::attack;
 };
 
 #endif

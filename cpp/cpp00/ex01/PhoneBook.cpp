@@ -20,6 +20,14 @@ std :: string   cut_if_necessary(std :: string str)
 	return (str_to_print);
 }
 
+bool	has_only_spaces(std::string str)
+{
+	for (std::string::iterator it = str.begin(); it != str.end(); it++)
+		if (!isspace(*it))
+			return false;
+	return (true);
+}
+
 std::string get_string(void)
 {
 	std::string str;
@@ -27,9 +35,7 @@ std::string get_string(void)
 	do
 	{
 		std::getline(std::cin, str);
-		
-		// str.erase(std::remove_if(str.begin(), str.end(), ::isspace), str.end());
-    } while (str.empty());
+    } while (str.empty() || has_only_spaces(str));
 	return (str);
 }
 
@@ -85,7 +91,8 @@ void PhoneBook::serch_contact()
 		std :: cin >> index;
 	if (std::cin.fail())
     {
-		std::cin.clear();std::cin.ignore();
+		std::cin.clear();
+		std::cin.ignore();
 		std::cout << "Invalid input. Please enter a number!" << std::endl;
 		return ;
     }

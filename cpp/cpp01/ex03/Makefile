@@ -10,7 +10,7 @@ $(NAME)	:	$(OBJ)
 			$(CC) $(FLAG) $(OBJ) -o $(NAME)
 
 %.o		:	%.cpp
-			$(CC) $(FLAGS) -c $< -o $@
+			$(CC) $(FLAG) -c $< -o $@
 clean	:
 			rm -f $(OBJ)
 

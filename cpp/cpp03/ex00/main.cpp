@@ -6,13 +6,13 @@
 /*   By: alimotta <alimotta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 10:12:08 by alimotta          #+#    #+#             */
-/*   Updated: 2024/08/22 15:48:15 by alimotta         ###   ########.fr       */
+/*   Updated: 2024/08/30 14:35:18 by alimotta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ClapTrap.hpp"
 
-int	main()
+int main()
 {
 	std::cout << "\033[31m-- CONSTRUCTOR --\033[0m" << std::endl;
 	ClapTrap A;
@@ -20,7 +20,7 @@ int	main()
 	ClapTrap C("C-3PO");
 	ClapTrap D(C);
 	A = B;
-	
+
 	std::cout << "\033[31m\n-- ACTION --\033[0m" << std::endl;
 	B.attack("C-3PO");
 	C.takeDamage(-5);
@@ -29,7 +29,6 @@ int	main()
 	A.takeDamage(20);
 	A.beRepaired(1);
 	A.attack("C-3PO");
-
 
 	std::cout << "\033[31m\n-- DECONSTRUCTOR --\033[0m" << std::endl;
 	return (0);

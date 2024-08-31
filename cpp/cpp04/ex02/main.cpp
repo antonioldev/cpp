@@ -6,7 +6,7 @@
 /*   By: alimotta <alimotta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 15:47:58 by alimotta          #+#    #+#             */
-/*   Updated: 2024/08/22 15:20:07 by alimotta         ###   ########.fr       */
+/*   Updated: 2024/08/31 12:25:41 by alimotta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,6 @@ int	main(void)
 	for (i=0; i < count; i++)
 		delete (animals[i]);
 	
-	// Animal x;
+	Animal x;
 	// x.makeSound();
 }

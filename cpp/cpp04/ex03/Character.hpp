@@ -10,6 +10,7 @@ class Character : public ICharacter
 {
 private:
 	AMateria* slot[4];
+	AMateria* floor[50];
 	std::string name;
 public:
 	Character();

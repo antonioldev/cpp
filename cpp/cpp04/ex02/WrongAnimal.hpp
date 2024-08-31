@@ -6,7 +6,7 @@
 /*   By: alimotta <alimotta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 17:19:23 by alimotta          #+#    #+#             */
-/*   Updated: 2024/08/21 17:19:49 by alimotta         ###   ########.fr       */
+/*   Updated: 2024/08/30 15:55:22 by alimotta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ public:
 	WrongAnimal();
 	WrongAnimal(const WrongAnimal& other);
 	WrongAnimal& operator=(const WrongAnimal& other);
-	virtual ~WrongAnimal();
-	virtual void makeSound() const;
+	~WrongAnimal();
+	void makeSound() const;
 	std::string getType() const;
 
 };

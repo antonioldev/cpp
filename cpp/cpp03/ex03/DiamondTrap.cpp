@@ -6,7 +6,7 @@
 /*   By: alimotta <alimotta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 12:41:25 by alimotta          #+#    #+#             */
-/*   Updated: 2024/08/21 15:20:05 by alimotta         ###   ########.fr       */
+/*   Updated: 2024/08/30 15:23:51 by alimotta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,24 @@
 DiamondTrap::DiamondTrap(void) : ClapTrap("Unknow_clap_trap")
 {
 	this->name = "Unknow";
-	this->hit = FragTrap::hit;
-	this->energy = ScavTrap::energy;
-	this->attack_p = FragTrap::attack_p;
+	// this->hit = FragTrap::hit;
+	// this->energy = ScavTrap::energy;
+	// this->attack_p = FragTrap::attack_p;
+	this->hit = 100;
+	this->energy = 50;
+	this->attack_p = 30;
 	std::cout << "[DiamondTrap] Default constructor" << std::endl;
 }
 
 DiamondTrap::DiamondTrap(std::string newname) : ClapTrap(newname + "_clap_trap")
 {
 	this->name = newname;
-	this->hit = FragTrap::hit;
-	this->energy = ScavTrap::energy;
-	this->attack_p = FragTrap::attack_p;
+	// this->hit = FragTrap::hit;
+	// this->energy = ScavTrap::energy;
+	// this->attack_p = FragTrap::attack_p;
+	this->hit = 100;
+	this->energy = 50;
+	this->attack_p = 30;
 	std::cout << "[DiamondTrap] " << name << " created" << std::endl;
 }
 
@@ -57,10 +63,10 @@ DiamondTrap& DiamondTrap::operator=(const DiamondTrap& other)
 	return (*this);
 }
 
-void DiamondTrap::attack(const std::string& target)
-{
-	ScavTrap::attack(target);
-}
+// void DiamondTrap::attack(const std::string& target)
+// {
+// 	ScavTrap::attack(target);
+// }
 
 void DiamondTrap::whoAmI()
 {

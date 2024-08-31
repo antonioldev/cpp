@@ -14,7 +14,7 @@
 
 HumanB::HumanB(std::string str)  : name(str)
 {
-	
+	type = 0;
 }
 
 void HumanB::attack(void)

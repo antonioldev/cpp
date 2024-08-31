@@ -1,6 +1,6 @@
 NAME	=	a.out
 CC		=	c++
-FLAGS	=	-Wall -Wextra -Werror -std=c++98
+FLAG	=	-Wall -Wextra -Werror -std=c++98
 SRC		=	main.cpp Harl.cpp
 OBJ		=	$(SRC:.cpp=.o)
 

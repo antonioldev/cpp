@@ -6,7 +6,7 @@
 /*   By: alimotta <alimotta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 16:06:43 by alimotta          #+#    #+#             */
-/*   Updated: 2024/08/22 08:00:25 by alimotta         ###   ########.fr       */
+/*   Updated: 2024/08/30 15:57:18 by alimotta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ Cat::~Cat()
 
 void Cat::makeSound() const
 {
-	std::cout << "Why does my " << type << " meow so much" << std::endl;
+	std::cout << "[" << type << "] meow meow!" << std::endl;
 }
 
 std::string Cat::getType() const
