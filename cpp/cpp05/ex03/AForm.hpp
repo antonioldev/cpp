@@ -29,7 +29,7 @@ private:
 public:
 	AForm();
 	AForm(const std::string new_name, const std::string new_target, int newLevelSign, int newLevelExec);
-	~AForm();
+	virtual ~AForm();
 	AForm(const AForm& other);
 	AForm& operator=(const AForm& other);
 	std::string getName() const;
@@ -39,6 +39,7 @@ public:
 	bool isItSigned() const;
 	void beSigned(const Bureaucrat& Bureaucrat);
 	virtual void execute(Bureaucrat const& executor) const = 0;
+	static AForm* makeForm(std::string form_name, std::string target_name);
 	
 
 	class GradeTooLowException : public std::exception

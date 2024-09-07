@@ -71,3 +71,10 @@ void ShrubberyCreationForm::execute(Bureaucrat const & executor) const
 		throw GradeTooLowException();
 	}
 }
+
+AForm* ShrubberyCreationForm::makeForm(AForm *form, std::string form_name, std::string target_name)
+{
+	if (form == NULL && form_name == "shrubbery creation")
+		return (new ShrubberyCreationForm(target_name));
+	return (form);
+}

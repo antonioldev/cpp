@@ -1,16 +1,20 @@
-#include "Form.hpp"
+#include "AForm.hpp"
+#include "ShrubberyCreationForm.hpp"
+#include "RobotomyRequestForm.hpp"
+#include "PresidentialPardonForm.hpp"
+
 
 /*******************************************************************/
 /*                           CONSTRUCTOR                           */
 /*******************************************************************/
-Form::Form() : name("Empty"), levelSign(150), levelExec(150)
+AForm::AForm() : name("Empty"), target("Unknow") ,levelSign(150), levelExec(150)
 {
 	isSigned = false;
-	std::cout << name << " form created\n";
+	// std::cout << name << " Aform created\n";
 }
 
-Form::Form(std::string new_name, int newLevelSign, int newLevelExec) :
-name(new_name), levelSign(newLevelSign), levelExec(newLevelExec)
+AForm::AForm(std::string new_name, std::string new_target ,int newLevelSign, int newLevelExec) :
+name(new_name), target(new_target), levelSign(newLevelSign), levelExec(newLevelExec)
 {
 	isSigned = false;
 	if (newLevelSign < 1 || newLevelExec < 1)
@@ -23,53 +27,58 @@ name(new_name), levelSign(newLevelSign), levelExec(newLevelExec)
 		std::cout << "Error when creating " << name;
 		throw GradeTooLowException();
 	}
-	std::cout << name << " form created\n";
+	std::cout << name << " Aform created\n";
 }
 
-Form::Form(const Form& other) :
+AForm::AForm(const AForm& other) :
 name(other.name), levelSign(other.levelSign), levelExec(other.levelExec)
 {
 	this->isSigned = other.isItSigned();
-	std::cout << "Form Copy constructor\n";
+	std::cout << "AForm Copy constructor\n";
 }
 
-Form& Form::operator=(const Form& other)
+AForm& AForm::operator=(const AForm& other)
 {
 	if (this == &other)
 		return (*this);
-	std::cout << "Form copy assign constructor\n";
-	Form temp(other);
-	std::swap (*this, temp);
+	// std::cout << "AForm copy assign constructor\n";
+	// AForm temp(other);
+	// std::swap (*this, temp);
 	return (*this);
 }
 
 /*******************************************************************/
 /*                          DECONSTRUCTOR                          */
 /*******************************************************************/
-Form::~Form()
+AForm::~AForm()
 {
-
+	
 }
 
 /*******************************************************************/
 /*                              GETTER                             */
 /*******************************************************************/
-std::string Form::getName() const
+std::string AForm::getName() const
 {
 	return (this->name);
 }
 
-int Form::getLevelSign() const
+std::string AForm::getTarget() const
+{
+	return (this->target);
+}
+
+int AForm::getLevelSign() const
 {
 	return (this->levelSign);
 }
 
-int Form::getLevelExec() const
+int AForm::getLevelExec() const
 {
 	return (this->levelExec);
 }
 
-bool Form::isItSigned() const
+bool AForm::isItSigned() const
 {
 	return (this->isSigned);	
 }
@@ -77,34 +86,33 @@ bool Form::isItSigned() const
 /*******************************************************************/
 /*                              SETTER                             */
 /*******************************************************************/
-void Form::beSigned(const Bureaucrat& Bureaucrat)
+void AForm::beSigned(const Bureaucrat& Bureaucrat)
 {
 	if (this->isItSigned() == true)
 	{
 		std::cout << R << this->getName() << RST;
-		throw FormAlreadySignedException();
+		throw AFormAlreadySignedException();
 	}
 	if (Bureaucrat.getGrade() > this->getLevelSign())
 	{
 		throw GradeTooLowException();
 	}
 	this->isSigned = true;
-	// Bureaucrat.signForm(*this);
 }
 
 /*******************************************************************/
 /*                             OVERLOAD                            */
 /*******************************************************************/
 
-std::ostream& operator<<(std::ostream& os, const Form& Form)
+std::ostream& operator<<(std::ostream& os, const AForm& AForm)
 {
-	os << "Form Name: ";
-	os << G << Form.getName() << RST;
+	os << "AForm Name: ";
+	os << G << AForm.getName() << RST;
 	os << "\nTo sign it needs level: ";
-	os << G << Form.getLevelSign() << RST;
+	os << G << AForm.getLevelSign() << RST;
 	os << ", to execute it needs level: ";
-	os << G << Form.getLevelExec() << RST;
-	if (Form.isItSigned())
+	os << G << AForm.getLevelExec() << RST;
+	if (AForm.isItSigned())
 		os << G << "\nForm is signed." << RST;
 	else
 		os << R << "\nForm is NOT signed." << RST;
@@ -115,17 +123,35 @@ std::ostream& operator<<(std::ostream& os, const Form& Form)
 /*                             EXCEPTION                           */
 /*******************************************************************/
 
-const char *Form::GradeTooLowException::what(void) const throw()
+const char *AForm::GradeTooLowException::what(void) const throw()
 {
 	return (" -> Grade too low\n");
 };
 
-const char *Form::GradeTooHighException::what(void) const throw()
+const char *AForm::GradeTooHighException::what(void) const throw()
 {
 	return (" -> Grade too high\n");
 };
 
-const char *Form::FormAlreadySignedException::what(void) const throw()
+const char *AForm::AFormAlreadySignedException::what(void) const throw()
 {
-	return (" -> Form Already signed!\n");
+	return (" -> form Already signed!\n");
 };
+
+const char *AForm::AFormNotSignedException::what(void) const throw()
+{
+	return (" -> form is not signed!\n");
+};
+
+/*******************************************************************/
+/*                             EXCECUTION                          */
+/*******************************************************************/
+
+AForm* AForm::makeForm(std::string form_name, std::string target_name)
+{
+	AForm* form = 0;
+	form = ShrubberyCreationForm::makeForm(form, form_name, target_name);
+	form = RobotomyRequestForm::makeForm(form, form_name, target_name);
+	form = PresidentialPardonForm::makeForm(form, form_name, target_name);
+	return (form);
+}

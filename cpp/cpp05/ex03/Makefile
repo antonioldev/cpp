@@ -1,7 +1,14 @@
 NAME 	=	a.out
 CC		=	c++
 FLAG	=	-Wall -Wextra -Werror -std=c++98 -Wshadow -Wno-shadow
-SRC		=	main.cpp Bureaucrat.cpp AForm.cpp ShrubberyCreationForm.cpp PresidentialPardonForm.cpp RobotomyRequestForm.cpp
+SRC		=	main.cpp \
+			Bureaucrat.cpp \
+			AForm.cpp \
+			ShrubberyCreationForm.cpp \
+			PresidentialPardonForm.cpp \
+			RobotomyRequestForm.cpp \
+			Intern.cpp
+			
 OBJ		=	$(SRC:.cpp=.o)
 
 all		:	$(NAME)
