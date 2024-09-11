@@ -8,17 +8,23 @@
 #include <cstdlib>
 #include <limits>
 #include <cmath>
+#include "utils.hpp"
 
 #define RST "\033[0m"    /* Reset to default color */
 #define BOLD "\033[1m"   /* Bold */
 #define R "\033[1;31m" /* Red */
 class ScalarConverter
 {
-public:
+private:
 	ScalarConverter();
 	~ScalarConverter();
 	ScalarConverter(const ScalarConverter& other);
 	virtual ScalarConverter& operator=(const ScalarConverter& other) = 0;
+public:
+	// ScalarConverter();
+	// ~ScalarConverter();
+	// ScalarConverter(const ScalarConverter& other);
+	// virtual ScalarConverter& operator=(const ScalarConverter& other) = 0;
 	static void convert(const std::string& str);
 };
 

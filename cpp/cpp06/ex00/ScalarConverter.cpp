@@ -21,61 +21,49 @@ ScalarConverter& ScalarConverter::operator=(const ScalarConverter& other)
 	return (*this);
 }
 
-
 void ScalarConverter::convert(const std::string& str)
 {
-	std::cout << BOLD R "Parameter: " << str << RST << std::endl;
-	
-	int i = static_cast<int>(std::atoi(str.c_str()));
-	if (isprint(i))
-		std::cout << "int: " << static_cast<char>(i) << std::endl;
-	else
-		std::cout << "char: Non displayable" << std::endl;
-	
-	try
+	if (isChar(str))
 	{
+		std::cout << BOLD R << str << " is a char\n" RST;
+		int c = static_cast<int>(std::atoi(str.c_str()));
+		long i = static_cast<long>(c);
+		float f = static_cast<float>(c);
+		double d = static_cast<double>(c);
+		printResult(c, i, f, d);
+		
+	}
+	else if (isInt(str))
+	{
+		std::cout << BOLD R << str << " is an int\n" RST;
 		float i = static_cast<float>(std::atof(str.c_str()));
-		if (i == std::numeric_limits<float>::infinity()
-			|| i == -std::numeric_limits<float>::infinity()
-			|| std::isnan(i))
-			std::cout << "int: impossible" << std::endl;
-		else
-			std::cout << "int: " << static_cast<int>(i) << std::endl;
+		char c = static_cast<char>(i);
+		float f = static_cast<float>(i);
+		double d = static_cast<double>(i);
+		printResult(c, i, f, d);
+
 	}
-	catch (std::invalid_argument&)
+	else if (isDouble(str))
 	{
-		std::cout << "int: impossible" << std::endl;
-	}
-	catch (std::out_of_range&)
-	{
-		std::cout << "int: out of range" << std::endl;
-	}
-	try
-	{
-		float f = static_cast<float>(std::atof(str.c_str()));
-		std::cout << "float: " << std::fixed << f << "f";
-		std::cout << std::endl;
-	}
-	catch (std::invalid_argument&)
-	{
-		std::cout << "float: impossible" << std::endl;
-	}
-	catch (std::out_of_range&)
-	{
-		std::cout << "float: out of range" << std::endl;
-	}	
-	try
-	{
+		std::cout << BOLD R << str << " is a double\n" RST;
 		double d = static_cast<double>(std::atof(str.c_str()));
-		std::cout << "double: " << d;
-		std::cout << std::endl;
+		char c = static_cast<char>(d);
+		float i = static_cast<float>(std::atof(str.c_str()));
+		float f = static_cast<float>(d);
+		printResult(c, i, f, d);
 	}
-	catch (std::invalid_argument&)
+	else if (isFloat(str))
 	{
-		std::cout << "double: impossible" << std::endl;
+		std::cout << BOLD R << str << " is a float\n" RST;
+		float f = static_cast<float>(std::atof(str.c_str()));
+		char c = static_cast<char>(f);
+		float i = static_cast<float>(std::atof(str.c_str()));
+		double d = static_cast<double>(f);
+		printResult(c, i, f, d);
 	}
-	catch (std::out_of_range&)
+	else
 	{
-		std::cout << "double: out of range" << std::endl;
+		std::cout <<BOLD R << str << " is unknown type." RST<< std::endl;
 	}
+
 }
