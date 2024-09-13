@@ -1,7 +1,7 @@
-NAME 	=	a.out
+NAME	=	a.out
 CC		=	c++
-FLAG	=	-std=c++98 -Wshadow -Wno-shadow
-SRC		=	main.cpp Bureaucrat.cpp
+FLAG	=	-Wall -Wextra -Werror -std=c++98
+SRC		=	main.cpp
 OBJ		=	$(SRC:.cpp=.o)
 
 all		:	$(NAME)

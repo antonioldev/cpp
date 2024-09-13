@@ -7,7 +7,6 @@ Base* generate()
 {
 	srand(time(0));
 	int i = rand();
-	std::cout << i << std::endl;
 	i %= 3;
 	if (i == 0)
 	{

@@ -28,21 +28,21 @@ bool isFloat(const std::string& str)
 	return (*end == 'f');
 }
 
-void printResult(int c, float i, float f, double d)
+void printResult(int c, long i, float f, double d)
 {
 	if (isprint(c))
-			std::cout << "char: " << static_cast<char>(c) << std::endl;
-		else
-			std::cout << "char: Non displayable" << std::endl;
+		std::cout << "char: " << static_cast<char>(c) << std::endl;
+	else
+		std::cout << "char: Non displayable" << std::endl;
 
 	if (i == std::numeric_limits<float>::infinity()
-			|| i == -std::numeric_limits<float>::infinity()
-			|| std::isnan(i))
+		|| i == -std::numeric_limits<float>::infinity()
+		|| std::isnan(i))
 			std::cout << "int: impossible" << std::endl;
-		else if (i > INT_MAX || i < INT_MIN)
-			std::cout << "int: out of range" << std::endl;
-		else
-			std::cout << "int: " << static_cast<int>(i) << std::endl;
+	else if (i > INT_MAX || i < INT_MIN)
+		std::cout << "int: out of range" << std::endl;
+	else
+		std::cout << "int: " << static_cast<int>(i) << std::endl;
 
 	std::cout << "float: " << std::fixed << f << "f\n";
 

@@ -67,6 +67,10 @@
 		"cinttypes": "cpp",
 		"typeindex": "cpp",
 		"variant": "cpp",
-		"semaphore": "cpp"
+		"semaphore": "cpp",
+		"codecvt": "cpp",
+		"cfenv": "cpp",
+		"array.hpp": "c",
+		"*.tpp": "cpp"
 	}
 }

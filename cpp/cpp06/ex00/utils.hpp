@@ -14,6 +14,6 @@ bool isChar(const std::string& str);
 bool isInt(const std::string& str);
 bool isDouble(const std::string& str);
 bool isFloat(const std::string& str);
-void printResult(int c, float i, float f, double d);
+void printResult(int c, long i, float f, double d);
 
 #endif

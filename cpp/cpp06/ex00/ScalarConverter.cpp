@@ -23,25 +23,26 @@ ScalarConverter& ScalarConverter::operator=(const ScalarConverter& other)
 
 void ScalarConverter::convert(const std::string& str)
 {
-	if (isChar(str))
-	{
-		std::cout << BOLD R << str << " is a char\n" RST;
-		int c = static_cast<int>(std::atoi(str.c_str()));
-		long i = static_cast<long>(c);
-		float f = static_cast<float>(c);
-		double d = static_cast<double>(c);
-		printResult(c, i, f, d);
-		
-	}
-	else if (isInt(str))
+	if (isInt(str))
 	{
 		std::cout << BOLD R << str << " is an int\n" RST;
-		float i = static_cast<float>(std::atof(str.c_str()));
+		long i = static_cast<long>(std::atol(str.c_str()));
 		char c = static_cast<char>(i);
 		float f = static_cast<float>(i);
 		double d = static_cast<double>(i);
 		printResult(c, i, f, d);
 
+	}
+	else if (isChar(str))
+	{
+		std::cout << BOLD R << str << " is a char\n" RST;
+		// int c = static_cast<int>(std::atoi(str.c_str()));
+		char c = str[0];
+		long i = static_cast<long>(c);
+		float f = static_cast<float>(c);
+		double d = static_cast<double>(c);
+		printResult(c, i, f, d);
+		
 	}
 	else if (isDouble(str))
 	{
