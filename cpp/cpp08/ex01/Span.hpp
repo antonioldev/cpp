@@ -1,4 +1,6 @@
-#pragma once
+#ifndef SPAN_HPP
+#define SPAN_HPP
+
 #include <list>
 #include <iostream>
 #include <string>
@@ -23,11 +25,15 @@ public:
 	std::string	longestSpan();
 	void printList();
 
-	template <typename T>
-	void	addNumbers(T container)
-	{
-		typename T::iterator it;
-		for (it = container.begin(); it != container.end(); ++it)
-			addNumber(*it);
-	}
+	// template <typename T>
+	// void	addNumbers(T container)
+	// {
+	// 	typename T::iterator it;
+	// 	for (it = container.begin(); it != container.end(); ++it)
+	// 		addNumber(*it);
+	// }
 };
+
+#include "Span.tpp"
+
+#endif
