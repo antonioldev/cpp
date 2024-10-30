@@ -4,7 +4,9 @@
 #include <list>
 #include <iostream>
 #include <string>
-#include <cstdarg>
+#include <cmath>
+#include <climits>
+#include <sstream>
 
 #define RST "\033[0m"	// Reset to default color
 #define BOLD "\033[1m"	// Bold
@@ -20,20 +22,21 @@ private:
 public:
 	Span(unsigned int size);
 	~Span();
+	Span(const Span& other);
+	Span& operator=(const Span& other);
 	void		addNumber(int number);
 	std::string	shortestSpan();
 	std::string	longestSpan();
 	void printList();
 
-	// template <typename T>
-	// void	addNumbers(T container)
-	// {
-	// 	typename T::iterator it;
-	// 	for (it = container.begin(); it != container.end(); ++it)
-	// 		addNumber(*it);
-	// }
+	 template <typename T>
+	 void	addNumbers(T container)
+	 {
+		 typename T::iterator it;
+		 for (it = container.begin(); it != container.end(); ++it)
+			 addNumber(*it);
+	 }
+	 
 };
-
-#include "Span.tpp"
 
 #endif

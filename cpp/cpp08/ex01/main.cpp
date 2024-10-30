@@ -1,14 +1,32 @@
 #include <iostream>
+#include <cstdlib>
 #include <vector>
-#include <deque>
+//#include <deque>
 #include <list>
-#include <stack>
+//#include <stack>
 #include "Span.hpp"
-#include <iostream>
 
+#define RST "\033[0m"	// Reset to default color
+#define BOLD "\033[1m"	// Bold
+#define R "\033[1;31m"	// Red
+#define G "\033[1;32m"	//Green
 
 int main()
 {
+	std::vector<int> moreNumbers;
+	moreNumbers.push_back(6);
+	moreNumbers.push_back(3);
+	moreNumbers.push_back(17);
+	moreNumbers.push_back(9);
+	moreNumbers.push_back(11);
+
+	std::list<int> moreNumbers2;
+	moreNumbers2.push_back(6);
+	moreNumbers2.push_back(3);
+	moreNumbers2.push_back(17);
+	moreNumbers2.push_back(9);
+	moreNumbers2.push_back(11);
+
 	std::cout << R << "**************************************\n";
 	std::cout << "              EMPTY TEST              \n" << RST;
 	Span sp0 = Span(5);
@@ -19,8 +37,6 @@ int main()
 	sp0.addNumber(17);
 	sp0.addNumber(9);
 	sp0.addNumber(11);
-	std::cout << sp0.shortestSpan() << std::endl;
-	std::cout << sp0.longestSpan() << std::endl;
 	std::cout << R << "**************************************\n\n" << RST;
 
 	std::cout << G << "**************************************\n";
@@ -69,7 +85,6 @@ int main()
 	std::cout << G << "**************************************\n";
 	std::cout << "            ONE CALL TEST             \n" << RST;
 	Span sp5 = Span(5);
-	std::vector<int> moreNumbers = {6, 3, 17, 9, 11};
 	sp5.addNumbers(moreNumbers);
 	std::cout << sp5.shortestSpan() << std::endl;
 	std::cout << sp5.longestSpan() << std::endl;
@@ -77,8 +92,7 @@ int main()
 
 	std::cout << R << "**************************************\n";
 	std::cout << "         ONE CALL TEST OVERFLOW        \n" << RST;
-	Span sp6 = Span(5);
-	std::vector<int> moreNumbers2 = { 6, 3, 17, 9, 11, 700 };
+	Span sp6 = Span(4);
 	sp6.addNumbers(moreNumbers2);
 	std::cout << sp6.shortestSpan() << std::endl;
 	std::cout << sp6.longestSpan() << std::endl;

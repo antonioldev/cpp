@@ -6,6 +6,23 @@ Span::Span(unsigned int size) : maxElements(size), currentElements(0)
 Span::~Span()
 {}
 
+Span::Span(const Span& other)
+	: maxElements(other.maxElements),
+	currentElements(other.currentElements),
+	myList(other.myList)
+{}
+
+Span& Span::operator=(const Span& other)
+{
+	if (this != &other)
+	{
+		maxElements = other.maxElements;
+		currentElements = other.currentElements;
+		myList = other.myList;
+	}
+	return *this;
+}
+
 void Span::addNumber(int number)
 {
 	try
@@ -33,15 +50,23 @@ std::string Span::shortestSpan()
 			throw std::invalid_argument("List is empty!");
 		if (currentElements == 1)
 			throw std::invalid_argument("List has only 1 item");
-		unsigned int shortest = UINT32_MAX;
-		for (std::list<int>::iterator it = myList.begin(); it != myList.end(); ++it)
+
+		int shortest = INT_MAX;
+		
+		std::list<int>::iterator it1 = myList.begin();
+		std::list<int>::const_iterator it2 = ++myList.begin();
+
+		while (it2 != myList.end())
 		{
-			std::list<int>::iterator it2 = std::next(it);
-			int difference = std::abs(*it - *it2);
+			int difference = std::abs(*it1 - *it2);
 			if (difference < shortest)
 				shortest = difference;
+			++it1;
+			++it2;
 		}
-		return std::to_string(shortest);
+		std::stringstream ss;
+		ss << shortest;
+		return ss.str();
 	}
 	catch (const std::invalid_argument& e)
 	{
@@ -58,15 +83,22 @@ std::string Span::longestSpan()
 			throw std::invalid_argument("List is empty!");
 		if (currentElements == 1)
 			throw std::invalid_argument("List has only 1 item");
-		unsigned int longest = 0;
-		for (std::list<int>::iterator it = myList.begin(); it != myList.end(); ++it)
+		int longest = 0;
+
+		std::list<int>::iterator it1 = myList.begin();
+		std::list<int>::iterator it2 = ++myList.begin();
+
+		while (it2 != myList.end())
 		{
-			std::list<int>::iterator it2 = std::next(it);
-			int difference = std::abs(*it - *it2);
+			int difference = std::abs(*it1 - *it2);
 			if (difference > longest)
 				longest = difference;
+			++it1;
+			++it2;
 		}
-		return std::to_string(longest);
+		std::stringstream ss;
+		ss << longest;
+		return ss.str();
 	}
 	catch (const std::invalid_argument& e)
 	{
@@ -77,10 +109,11 @@ std::string Span::longestSpan()
 
 void Span::printList()
 {
-	std::cout << "Elements: " ;
-	for (const int& elem : myList)
-		std::cout << elem << " ";
+	std::cout << "Elements: ";
+	for (std::list<int>::iterator it = myList.begin(); it != myList.end(); ++it)
+		std::cout << *it << " ";
 	std::cout << "\n";
+	
 }
 
 //template <typename T>

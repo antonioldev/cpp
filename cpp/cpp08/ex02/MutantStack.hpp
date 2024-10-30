@@ -2,7 +2,11 @@
 #define  MUTANTSTACK_HPP
 
 #include <stack>
-#include <iostream>
+
+#define RST "\033[0m"	// Reset to default color
+#define BOLD "\033[1m"	// Bold
+#define R "\033[1;31m"	// Red
+#define G "\033[1;32m"	//Green
 
 template <typename T>
 class MutantStack : public std::stack<T>
