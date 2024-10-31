@@ -16,19 +16,8 @@ int main(int ac, char** av)
 		std::ifstream db_to_compare_file(av[1]);
 		if (!db_exchange_rate_file.is_open() || !db_to_compare_file.is_open())
 			return (std::cerr << R << "Error opening database. Database may be missing or corrupted\n", 1);
-		BitcoinExchange db_exchange_rate(db_exchange_rate_file, ',');
-		try
-		{
-			BitcoinExchange db_to_compare(db_to_compare_file, " | ");
-			db_to_compare.calculateValue(db_exchange_rate.getDb());
-			//db_to_compare.printDatabase();
-		}
-		catch (const std::runtime_error& e)
-		{
-			std::cerr << "Error: " << e.what() << std::endl;
-			return 1;
-		}
-		
+		BitcoinExchange db(db_exchange_rate_file, db_to_compare_file);
+		db.calculateValue(db_to_compare_file);
 		db_exchange_rate_file.close();
 		db_to_compare_file.close();
 	}

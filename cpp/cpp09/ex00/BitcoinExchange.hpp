@@ -4,6 +4,7 @@
 #include <string>
 #include <map>
 #include <cstring>
+#include <iostream>
 
 #define RST "\033[0m"	// Reset to default color
 #define BOLD "\033[1m"	// Bold
@@ -13,17 +14,15 @@
 class BitcoinExchange
 {
 public:
-	BitcoinExchange(std::ifstream& file, const char separator);
-	BitcoinExchange(std::ifstream& file, const std::string separator);
+	BitcoinExchange(std::ifstream& dbExchangeRateFile, std::ifstream& dbValueFile);
 	BitcoinExchange(const BitcoinExchange& other);
 	BitcoinExchange& operator=(const BitcoinExchange& other);
 	~BitcoinExchange();
-	void printDatabase();
-	void calculateValue(const std::multimap<std::string, int> base);
-	std::multimap<std::string, int> getDb();
+	//void printDatabase();
+	void calculateValue(std::ifstream& dbValueFile);
 
 private:
-	std::multimap<std::string, int> database;
+	std::multimap<std::string, float> dbExchangeRate;
 };
 
 bool isValidEntry(const std::string& key, const std::string& valueString, float& value);
