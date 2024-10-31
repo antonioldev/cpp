@@ -17,7 +17,8 @@ BitcoinExchange::BitcoinExchange(std::ifstream& dbExchangeRateFile, std::ifstrea
 		key = line.substr(0, pos);
 		valueString = line.substr(pos + 1);
 		valueString.erase(valueString.find_last_not_of("\n\r") + 1);
-		value = std::stof(valueString);
+		value = stringToFloat(valueString);
+		//value = std::stof(valueString);
 		dbExchangeRate.insert(std::make_pair(key, value));
 	}
 	(void) dbValueFile;

@@ -1,10 +1,11 @@
 #pragma once
 
-#include <fstream>
-#include <string>
 #include <map>
+#include <string>
 #include <cstring>
 #include <iostream>
+#include <sstream>
+#include <fstream>
 
 #define RST "\033[0m"	// Reset to default color
 #define BOLD "\033[1m"	// Bold
@@ -26,3 +27,4 @@ private:
 };
 
 bool isValidEntry(const std::string& key, const std::string& valueString, float& value);
+float stringToFloat(const std::string& str);

@@ -1,5 +1,16 @@
 #include "BitcoinExchange.hpp"
 
+float stringToFloat(const std::string& str)
+{
+	std::stringstream ss(str);
+	float result;
+	ss >> result;
+	if (ss.fail()) {
+		throw std::invalid_argument("Invalid float format");
+	}
+	return result;
+}
+
 bool date_match(const std::string& date)
 {
 	if (date.length() != 10)
@@ -87,10 +98,10 @@ bool isValidEntry(const std::string& key, const std::string& valueString, float&
 		std::cerr << "Invalid number format: " + valueString << std::endl;
 		return(false);
 	}
-	value = std::stof(valueString);
+	value = stringToFloat(valueString);
 	if (value < 0 || value > 1000)
 	{
-		std::cerr << "Integer out of range (0-1000): " + std::to_string(value) << std::endl;
+		std::cerr << "Integer out of range (0-1000)" << std::endl;
 		return(false);
 	}
 	return (true);
