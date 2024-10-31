@@ -1,0 +1,7 @@
+# Ignore all .log files
+*.log
+CppProperties.json
+
+# Ignore all files in any directory named temp
+temp/
+.vs/
