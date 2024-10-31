@@ -1,5 +1,20 @@
 # Ignore all .log files
 *.log
+
+# Exclude object files
+*.o
+
+# Exclude compiled binary files
+a.out
+
+# Exclude common executables
+*~
+*.exe
+*.bin
+*.exe~
+*.bin~*.bin
+
+# Exclude json files
 CppProperties.json
 
 # Ignore all files in any directory named temp
