@@ -12,7 +12,8 @@ a.out
 *.exe
 *.bin
 *.exe~
-*.bin~*.bin
+*.bin~
+*.bin
 
 # Exclude json files
 CppProperties.json

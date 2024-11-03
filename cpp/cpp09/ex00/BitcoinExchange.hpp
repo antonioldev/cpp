@@ -19,7 +19,6 @@ public:
 	BitcoinExchange(const BitcoinExchange& other);
 	BitcoinExchange& operator=(const BitcoinExchange& other);
 	~BitcoinExchange();
-	//void printDatabase();
 	void calculateValue(std::ifstream& dbValueFile);
 
 private:

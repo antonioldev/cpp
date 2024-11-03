@@ -1,7 +1,7 @@
 #pragma once
 
 #include <iostream>
-#include <vector>
+#include <stack>
 #include <sstream>
 #include <string>
 #include <cstdlib>
@@ -17,8 +17,7 @@ public:
 	void calculate(char* str);
 
 private:
-	std::vector<int> stack;
+	std::stack<int> stack;
+	int performOperation(int a, int b, const std::string& op);
+	bool isOperator(const std::string& token);
 };
-
-int performOperation(int a, int b, const std::string& op);
-bool isOperator(const std::string& token);

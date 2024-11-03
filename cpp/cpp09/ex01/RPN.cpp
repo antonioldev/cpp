@@ -26,45 +26,37 @@ void RPN::calculate(char* str)
 {
 	std::istringstream iss(str);
 	std::string token;
-	bool is_previous_operator = false;
-
+	
 	while (iss >> token)
 	{
 		if (isOperator(token))
 		{
-			if (is_previous_operator)
-				throw std::runtime_error("Error: Two consecutive operetors found found.");
 			if (stack.size() < 2)
 				throw std::runtime_error("Error: Only one operand found.");
-			while (stack.size() > 1)
-			{
-				int b = stack.back();
-				stack.pop_back();
-				int a = stack.back();
-				stack.pop_back();
-				int result = performOperation(a, b, token);
-				stack.push_back(result);
-			}
-			is_previous_operator = true;
+			int b = stack.top();
+			stack.pop();
+			int a = stack.top();
+			stack.pop();
+			int result = performOperation(a, b, token);
+			stack.push(result);
 		}
 		else
 		{
-			stack.push_back(atoi(token.c_str()));
-			is_previous_operator = false;
+			stack.push(atoi(token.c_str()));
 		}
 	}
 	if (stack.size() != 1) {
 		throw std::runtime_error("Error: The expression did not evaluate to a single result.");
 	}
-	std::cout << "Result: " << stack.back() << std::endl;
+	std::cout << "Result: " << stack.top() << std::endl;
 }
 
-bool isOperator(const std::string& token)
+bool RPN::isOperator(const std::string& token)
 {
 	return token == "+" || token == "-" || token == "*" || token == "/";
 }
 
-int performOperation(int a, int b, const std::string& op)
+int RPN::performOperation(int a, int b, const std::string& op)
 {
 	if (op == "+")
 		return (a + b);
