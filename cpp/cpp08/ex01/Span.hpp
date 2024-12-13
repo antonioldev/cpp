@@ -7,6 +7,7 @@
 #include <cmath>
 #include <climits>
 #include <sstream>
+#include <algorithm>
 
 #define RST "\033[0m"	// Reset to default color
 #define BOLD "\033[1m"	// Bold
@@ -18,7 +19,6 @@ private:
 	int	maxElements;
 	int	currentElements;
 	std::list<int> myList;
-
 public:
 	Span(unsigned int size);
 	~Span();
