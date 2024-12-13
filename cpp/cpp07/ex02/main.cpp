@@ -7,15 +7,15 @@
 int main(int, char**)
 {
 
-	Array<char> character(MAX_VAL);
-	for (int i = 0; i < MAX_VAL; i++)
-    {
-        character[i] = i + 75;
-    }
-	for (int i = 0; i < MAX_VAL; i++)
-    {
-		std::cout << character[i] << " ";
-	}
+	// Array<char> character(MAX_VAL);
+	// for (int i = 0; i < MAX_VAL; i++)
+    // {
+    //     character[i] = i + 75;
+    // }
+	// for (int i = 0; i < MAX_VAL; i++)
+    // {
+	// 	std::cout << character[i] << " ";
+	// }
 	std::cout << std::endl;
 	Array<int> numbers(MAX_VAL);
     int* mirror = new int[MAX_VAL];
@@ -57,10 +57,10 @@ int main(int, char**)
         std::cerr << e.what() << '\n';
     }
 
-    // for (int i = 0; i < MAX_VAL; i++)
-    // {
-    //     numbers[i] = rand();
-    // }
+    for (int i = 0; i < MAX_VAL; i++)
+    {
+        numbers[i] = rand();
+    }
     delete [] mirror;//
 	for (int i = 0; i < MAX_VAL; i++)
     {
