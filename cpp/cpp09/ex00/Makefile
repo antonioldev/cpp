@@ -1,7 +1,7 @@
 NAME	=	btc
 CC		=	c++
 FLAGS	=	-Wall -Wextra -Werror -std=c++98
-SRC		=	main.cpp BitcoinExchange.cpp helperFunctions.cpp
+SRC		=	main.cpp BitcoinExchange.cpp helper.cpp
 OBJ		=	$(SRC:.cpp=.o)
 
 all		:	$(NAME)

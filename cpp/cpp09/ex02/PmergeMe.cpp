@@ -40,12 +40,12 @@ bool PmergeMe::containsOnlyDigits(const char* str)
 
 double PmergeMe::getTimeVector()
 {
-	return time_vector;
+	return timeVector;
 }
 
 double PmergeMe::getTimeDeque()
 {
-	return time_deque;
+	return timeDeque;
 }
 
 int PmergeMe::getNbrElements()
@@ -53,47 +53,12 @@ int PmergeMe::getNbrElements()
 	return nbr_elements;
 }
 
-std::vector<int> PmergeMe::getVector()
+std::vector<int>& PmergeMe::getVector()
 {
 	return vector;
 }
 
-std::deque<int> PmergeMe::getDeque()
+std::deque<int>& PmergeMe::getDeque()
 {
 	return deque;
-}
-
-void PmergeMe::sortVector(int ac, char** av)
-{
-	clock_t start = clock();
-
-	// Convert command line arguments to integers and push into vector
-	for (int i = 1; i < ac; i++)
-		vector.push_back(std::atoi(av[i]));
-	std::vector<int> mainChain;
-	std::vector<int> pend;
-	createVectorPairs(mainChain, pend);
-	mergeInsertionSortVector(mainChain, 0, mainChain.size() - 1, 5);
-	//std::sort(mainChain.begin(), mainChain.end());
-	insertToMainChainVector(mainChain, pend);
-	vector = mainChain;
-
-	clock_t end = clock();
-	time_vector = double(end - start) / CLOCKS_PER_SEC * 1000000.00;
-}
-
-void PmergeMe::sortDeque(int ac, char** av)
-{
-	clock_t start = clock();
-	for (int i = 1; i < ac; i++)
-		deque.push_back(std::atoi(av[i]));
-	std::deque<int> mainChain;
-	std::deque<int> pend;
-	createDequePairs(mainChain, pend);
-	mergeInsertionSortDeque(mainChain, 0, mainChain.size() - 1, 5);
-	std::sort(mainChain.begin(), mainChain.end());
-	insertToMainChainDeque(mainChain, pend);
-	deque = mainChain;
-	clock_t end = clock();
-	time_deque = double(end - start) / CLOCKS_PER_SEC * 1000000.00;
 }

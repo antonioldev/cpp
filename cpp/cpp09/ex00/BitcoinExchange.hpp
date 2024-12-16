@@ -23,7 +23,9 @@ public:
 
 private:
 	std::multimap<std::string, float> dbExchangeRate;
+	bool isValidEntry(const std::string& key, const std::string& valueString, float& value);
+	float stringToFloat(const std::string& str);
 };
 
-bool isValidEntry(const std::string& key, const std::string& valueString, float& value);
-float stringToFloat(const std::string& str);
+// bool isValidEntry(const std::string& key, const std::string& valueString, float& value);
+// float stringToFloat(const std::string& str);

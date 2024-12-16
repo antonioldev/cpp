@@ -1,13 +1,14 @@
-#pragma once
+#ifndef PMERGEME_HPP
+#define PMERGEME_HPP
 
 #include <vector>
 #include <deque>
-#include <cstdlib>
 #include <iostream>
 #include <climits>
-#include <ctime>
+#include <sys/time.h>
 #include <algorithm>
 #include <iomanip>
+#include <typeinfo>
 
 class PmergeMe
 {
@@ -16,36 +17,39 @@ public:
 	PmergeMe(const PmergeMe& other);
 	PmergeMe& operator=(const PmergeMe& other);
 	~PmergeMe();
-	void sortVector(int ac, char** av);
-	void sortDeque(int ac, char** av);
 	double getTimeVector();
 	double getTimeDeque();
 	int getNbrElements();
-	std::vector<int> getVector();
-	std::deque<int> getDeque();
+	std::vector<int>& getVector();
+	std::deque<int>& getDeque();
 
 	template <typename Container>
-	void printContainer(const Container& container)
-	{
-		for (typename Container::const_iterator it = container.begin(); it != container.end(); ++it)
-			std::cout << *it << " ";
-		std::cout << std::endl;
-	}
+	void printContainer(const Container& container) const;
+
+	template <typename Container>
+	void sortContainer(int ac, char** av, Container& container);
 
 private:
-	bool containsOnlyDigits(const char* str);
-
-	void insertToMainChainVector(std::vector<int>& mainChain, std::vector<int>& pend);
-	void createVectorPairs(std::vector<int>& mainChain, std::vector<int>& pend);
-	void mergeInsertionSortVector(std::vector<int>& arr, int left, int right, int threshold);
-	
-	void insertToMainChainDeque(std::deque<int>& mainChain, std::deque<int>& pend);
-	void createDequePairs(std::deque<int>& mainChain, std::deque<int>& pend);
-	void mergeInsertionSortDeque(std::deque<int>& arr, int left, int right, int threshold);
 	int nbr_elements;
 	std::vector<int> vector;
-	double time_vector;
+	double timeVector;
 	std::deque<int> deque;
-	double time_deque;
+	double timeDeque;
+	bool containsOnlyDigits(const char* str);
+	
+	template <typename Container>
+	int binarySearch(Container& arr, int valueToMove);
+	
+	template <typename Container> // 1-> Create pairs and separate into mainChain and pend
+	void createPairs(Container& mainChain, Container& pend,  Container& source);
+
+	template <typename Container> // 2->  Sort using merge insertion based on mainChain
+	void sortMainChain(Container& mainChain, Container& pend);
+	
+	template <typename Container> // 3-> Insert the rest of pend int mainChain
+	void mergePendingElements(Container& mainChain, Container& pend);
 };
 
+#include "PmergeMe.tpp"
+
+#endif
