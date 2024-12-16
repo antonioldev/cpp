@@ -27,49 +27,45 @@ int PmergeMe::binarySearch(Container& arr, int valueToMove)
 template <typename Container> // 3-> Insert the rest of pend int mainChain
 void PmergeMe::mergePendingElements(Container& mainChain, Container& pend)
 {
-	int n = pend.size();
-	Container insertionSequence;
-	insertionSequence.push_back(1);
-	int nextTk = 3;
-	while (nextTk <= n)
+	size_t size = pend.size();
+	size_t halfSize = size / 2;
+
+	mainChain.insert(mainChain.begin(), pend[0]);
+	if (size == 1)
+		return;
+	for (size_t i = 2; i <= halfSize; i += 2)
 	{
-		insertionSequence.push_back(nextTk);
-		nextTk = nextTk * 2 - 1;
+		// Insert pend[i] and pend[i - 1] in the correct order
+		int valueToInsert = pend[i];
+		int pos = binarySearch(mainChain, valueToInsert);
+		typename Container::iterator it = mainChain.begin();
+		for (int j = 0; j < pos; ++j)
+			++it;
+		mainChain.insert(it, valueToInsert);
+
+		valueToInsert = pend[i - 1];
+		pos = binarySearch(mainChain, valueToInsert);
+		it = mainChain.begin();
+		for (int j = 0; j < pos; ++j)
+			++it;
+		mainChain.insert(it, valueToInsert);
 	}
-	for (size_t seqIndex = 0; seqIndex < insertionSequence.size(); ++seqIndex)
+
+	// Perform binary insertion for the second loop (remaining elements in reverse order)
+	for (size_t i = size - 1; i >= halfSize; --i)
 	{
-		int tk = insertionSequence[seqIndex];
-		if (tk > n)
-			break;
-		for (int j = tk; j > (seqIndex > 0 ? insertionSequence[seqIndex - 1] : 0); --j)
-		{
-			if (j > n)
-				continue;
-			int key = pend[j - 1];
-			
-			int pos = binarySearch(mainChain, key);
-			mainChain.insert(mainChain.begin() + pos, key);
-		}
+		int valueToInsert = pend[i];
+		int pos = binarySearch(mainChain, valueToInsert);
+		typename Container::iterator it = mainChain.begin();
+		for (int j = 0; j < pos; ++j)
+			++it;
+		mainChain.insert(it, valueToInsert);
 	}
 }
 
 template <typename Container> // 2->  Sort using merge insertion based on mainChain
 void PmergeMe::sortMainChain(Container& mainChain, Container& pend)
 {
-	// for (size_t i = 1; i < mainChain.size(); ++i)
-	// {
-	// 	int keyMain = mainChain[i];
-	// 	int keyPend = pend[i];
-	// 	size_t j = i;
-	// 	while (j > 0 && mainChain[j - 1] > keyMain)
-	// 	{
-	// 		mainChain[j] = mainChain[j - 1];
-	// 		pend[j] = pend[j -1];
-	// 		--j;
-	// 	}
-	// 	mainChain[j] = keyMain;
-	// 	pend[j] = keyPend;
-	// }
 	for (size_t i = 0; i < mainChain.size(); ++i)
 	{
 		for (size_t j = i + 1; j < mainChain.size(); ++j) {

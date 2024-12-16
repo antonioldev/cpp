@@ -40,13 +40,13 @@ private:
 	template <typename Container>
 	int binarySearch(Container& arr, int valueToMove);
 	
-	template <typename Container> // 1-> Create pairs and separate into mainChain and pend
+	template <typename Container>
 	void createPairs(Container& mainChain, Container& pend,  Container& source);
 
-	template <typename Container> // 2->  Sort using merge insertion based on mainChain
+	template <typename Container>
 	void sortMainChain(Container& mainChain, Container& pend);
 	
-	template <typename Container> // 3-> Insert the rest of pend int mainChain
+	template <typename Container>
 	void mergePendingElements(Container& mainChain, Container& pend);
 };
 
